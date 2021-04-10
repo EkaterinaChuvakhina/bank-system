@@ -1,2 +1,7 @@
-package ru.chuvahina.banksystem.exceptions;public class AccountNotFoundEception {
+package ru.chuvahina.banksystem.exceptions;
+
+public class AccountNotFoundException extends RuntimeException{
+    public AccountNotFoundException(String message) {
+        super(message);
+    }
 }
