@@ -1,12 +1,10 @@
-package service;
+package ru.chuvahina.banksystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.chuvahina.banksystem.entity.Account;
-import ru.chuvahina.banksystem.entity.Bill;
+import ru.chuvahina.banksystem.exceptions.AccountNotFoundException;
 import ru.chuvahina.banksystem.repository.AccountRepository;
-
-import java.util.List;
 
 @Service
 public class AccountService {
@@ -17,13 +15,18 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public Long save(String name, String email, List<Bill> bills) {
-        Account account = Account.builder().name(name)
-                .email(email).bills(bills).build();
+    public Long save(Account account) {
         return accountRepository.save(account).getAccountId();
     }
 
-    public Account findById
+    public Account findById(Long accountId) {
+        return accountRepository.findById(accountId)
+                .orElseThrow(() -> new AccountNotFoundException("Account with id: " + accountId + "not found"));
+    }
+
+    public Account update(Account account) {
+        return accountRepository.save(account);
+    }
 
 
 }
