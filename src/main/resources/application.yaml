@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    database: mysql
+    properties.hibernate.temp.use_jdbc_metadata_default: false
+    hibernate:
+      ddl-auto: update
+    properties:
+  datasource:
+    platform: mysql
+    username: admin
+    password: admin
+    url: jdbc:mysql://localhost:3306/bank_system
+    driver-class-name: com.mysql.cj.jdbc.Driver
